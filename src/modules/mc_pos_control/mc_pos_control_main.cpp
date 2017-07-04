@@ -1052,7 +1052,7 @@ MulticopterPositionControl::set_manual_acceleration_xy(matrix::Vector2f &stick_x
 	const bool do_acceleration = is_prev_zero || (is_aligned &&
 				     ((stick_xy.length() > _stick_input_xy_prev.length()) || (fabsf(stick_xy.length() - 1.0f) < FLT_EPSILON)));
 
-	const bool do_deceleration = (is_aligned && (stick_xy.length() <= _stick_input_xy_prev.length()));
+	const bool do_deceleration = (is_aligned && (_stick_input_xy_prev.length() - stick_xy.length()) > 0.01f);
 
 	const bool do_direction_change = !is_aligned;
 
